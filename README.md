@@ -8,5 +8,6 @@ The following implementations are suppported so far:
 * sbcl
 * allegro
 * clozure (ccl)
+* scieneer (scl)
 
-With the exception that clozure doesn't support datagram file sockets.
+Note that clozure and scieneer don't support datagram file sockets.
