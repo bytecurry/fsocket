@@ -5,6 +5,9 @@
   :author "Thayne McCombs <bytecurry.software@gmail.com>"
   :license "MIT"
   :depends-on (#:usocket)
-  :serial t
   :components ((:file "package")
-               (:file "fsocket")))
+               (:file "fsocket" :depends-on ("package"))
+               (:module backend :depends-on ("fsocket")
+                :components (#+allegro (:file "allegro")
+                             #+clozure (:file "clozure")
+                             #+sbcl (:file "sbcl")))))
