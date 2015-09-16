@@ -142,3 +142,29 @@ context where *peer-filename* is bound to the filename of the client, if set."
               #+(and cmu mp) (mp:process-yield)))
       (socket-close socket)
       (values))))
+
+;; Documentation for the function
+;;
+;; (defun FILE-SOCKET-CONNECT (filename &key (type :stream) (element-type 'character) local-filename))
+;;
+(setf (documentation 'file-socket-connect 'function)
+      "Connect to a local domain socket (UNIX socket) located at the path `filename'.
+`filename' and `local-filename' if supplied are assumed to be either a string or nil.
+
+If `local-filename' is supplied, the socket is bound to that file as the local file.
+This is primarily useful for creating datagram server sockets. Typically you would either
+supply `file' or `local-filename', not both. (`filename' is nil if not specified).
+
+`type' should either be the keyword :stream or :datagram.
+
+`element-type' specifies the element type of the stream created for the socket if a
+stream socket. Default is 'character.")
+
+;; Documentation for the function
+;;
+;; (defun FILE-SOCKET-LISTEN (filename &key (backlog 5) (element-type 'character)))
+;;
+(setf (documentation 'file-socket-listen 'function)
+      "Bind to a local domain socket (UNIX socket) located at the path `filename'.
+`filename' MUST be a string specifying a location for a socket file that is not currently
+in use. The `backlog' and `element-type' arguments behave the same as in `socket-listen'.")
