@@ -9,5 +9,8 @@ The following implementations are suppported so far:
 * allegro
 * clozure (ccl)
 * scieneer (scl)
+* cmucl
 
-Note that clozure and scieneer don't support datagram file sockets.
+Note that clozure, scieneer, and cmucl don't support datagram file sockets.
+(If you want them, either pressure your implementation of choice, or send me a pull
+request that gets them to work.)
