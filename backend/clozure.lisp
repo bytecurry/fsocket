@@ -41,5 +41,5 @@
                      :element-type element-type
                      :filename filename))))
 
-(defmethod fsocket-send ((foscket datagram-fsocket) buffer length &key filename)
+(defmethod socket-send ((foscket datagram-fsocket) buffer length &key filename)
   (unsupported 'fsocket 'socket-send))

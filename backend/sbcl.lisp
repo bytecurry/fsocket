@@ -48,7 +48,7 @@
         (sb-bsd-sockets:socket-close sock)))
     usocket))
 
-(defmethod fsocket-send ((fsocket datagram-fsocket) buffer length &key filename)
+(defmethod socket-send ((fsocket datagram-fsocket) buffer length &key filename)
   (with-mapped-conditions (fsocket)
     (sb-bsd-sockets:socket-send (socket fsocket) buffer length
                                 :address (list filename))))

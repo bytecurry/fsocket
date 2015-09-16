@@ -20,7 +20,7 @@
                                    :local-filename filename)))
     (make-instance 'stream-server-socket :socket sock :element-type element-type)))
 
-(defmethod fsocket-send ((fsocket datagram-fsocket) buffer length &key filename)
+(defmethod socket-send ((fsocket datagram-fsocket) buffer length &key filename)
   (with-mapped-conditions (fsocket)
     (socket:send-to (socket fsocket) buffer length :remote-filename filename)))
 

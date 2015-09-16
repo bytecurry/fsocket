@@ -38,19 +38,6 @@ Also called file sockets, since they are (usually) assocated with a file."))
 (defmethod get-peer-name ((socket stream-fsocket))
   (values (get-peer-filename socket) nil))
 
-(defgeneric fsocket-send (socket buffer length &key filename)
-  (:documentation "Like socket-send but allows specifying the remote filename rather than a
-host and port."))
-
-(defmethod socket-send ((usocket datagram-fsocket) buffer length &key host port)
-  "For fsockets, we define socket-send in terms of fsocket-send, and treat the host, if
-supplied as the filename. Not that the host must be a string.
-
-This makes it a little easier to treat inet sockets and unix sockets transparently."
-  (declare (ignore port))
-  (fsocket-send usocket buffer length :filename host))
-
-
 ;;; Macros
 
 (defmacro with-client-file-socket ((socket-var stream-var file &rest args &key
@@ -126,7 +113,7 @@ context where *peer-filename* is bound to the filename of the client, if set."
                           (when reply
                             (replace buffer reply)
                             (let ((n (socket-send socket buffer (length reply)
-                                                  (fsocket-send socket buffer (length reply)
+                                                  (socket-send socket buffer (length reply)
                                                                 :filename *peer-filename*))))
                               (when (minusp n)
                                 (error "send error: ~a~%" n))))))
